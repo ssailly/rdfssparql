@@ -29,6 +29,15 @@ public class Main {
 		if (sparqlFile.isEmpty() || !new File(sparqlFile).isFile()) {
 			throw new IllegalArgumentException("Invalid SPARQL file");
 		}
+		if (
+			compliance.isEmpty()
+			|| !compliance.equals("full")
+			|| !compliance.equals("default")
+			|| !compliance.equals("simple")
+			|| !compliance.equals("none")
+		) {
+			throw new IllegalArgumentException("Invalid compliance level");
+		}
 		if (debug) {
 			System.out.println("RDF file: " + rdfFile);
 			System.out.println("RDFS file: " + rdfsFile);
