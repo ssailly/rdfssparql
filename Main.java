@@ -31,10 +31,12 @@ public class Main {
 		}
 		if (
 			compliance.isEmpty()
-			|| !compliance.equals("full")
-			|| !compliance.equals("default")
-			|| !compliance.equals("simple")
-			|| !compliance.equals("none")
+			|| (
+				!compliance.equals("full")
+				&& !compliance.equals("default")
+				&& !compliance.equals("simple")
+				&& !compliance.equals("none")
+			)
 		) {
 			throw new IllegalArgumentException("Invalid compliance level");
 		}
@@ -45,6 +47,12 @@ public class Main {
 			System.out.println("Compliance: " + compliance);
 			System.out.println("New facts: " + newfacts);
 			System.out.println("Output: " + output);
+		}
+		if (!compliance.equals("none")) {
+			Reasoner reasoner = new Reasoner(rdfFile, rdfsFile, compliance, debug);
+			reasoner.run();
+		} else if (debug) {
+			System.out.println("No reasoning performed");
 		}
 	}
 }
