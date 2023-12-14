@@ -2,13 +2,15 @@ import org.apache.jena.rdf.model.InfModel;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.impl.InfModelImpl;
+import org.apache.jena.reasoner.Reasoner;
+import org.apache.jena.reasoner.ReasonerRegistry;
 import org.apache.jena.vocabulary.ReasonerVocabulary;
 
 /**
  * ReasonerRunner class
  */
 public class ReasonerRunner {
-	private org.apache.jena.reasoner.Reasoner reasoner;
+	private Reasoner reasoner;
 	private Model rdf = ModelFactory.createDefaultModel();
 	private Model rdfs = ModelFactory.createDefaultModel();
 	private boolean debug;
@@ -24,7 +26,7 @@ public class ReasonerRunner {
 	boolean debug) {
 		rdf.read(rdfFile);
 		rdfs.read(rdfsFile);
-		reasoner = org.apache.jena.reasoner.ReasonerRegistry.getRDFSReasoner();
+		reasoner = ReasonerRegistry.getRDFSReasoner();
 		reasoner.setParameter(ReasonerVocabulary.PROPsetRDFSLevel, compliance);
 		reasoner.setParameter(ReasonerVocabulary.PROPtraceOn, debug);
 		reasoner.setParameter(ReasonerVocabulary.PROPderivationLogging, debug);
