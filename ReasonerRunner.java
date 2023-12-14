@@ -5,10 +5,9 @@ import org.apache.jena.rdf.model.impl.InfModelImpl;
 import org.apache.jena.vocabulary.ReasonerVocabulary;
 
 /**
- * Reasoner class
- * @see https://github.com/apache/jena/blob/main/jena-core/src/main/resources/etc/rdfs.rules
+ * ReasonerRunner class
  */
-public class Reasoner {
+public class ReasonerRunner {
 	private org.apache.jena.reasoner.Reasoner reasoner;
 	private Model rdf = ModelFactory.createDefaultModel();
 	private Model rdfs = ModelFactory.createDefaultModel();
@@ -21,7 +20,7 @@ public class Reasoner {
 	 * @param compliance Compliance level
 	 * @param debug Debug mode
 	 */
-	public Reasoner(String rdfFile, String rdfsFile, String compliance,
+	public ReasonerRunner(String rdfFile, String rdfsFile, String compliance,
 	boolean debug) {
 		rdf.read(rdfFile);
 		rdfs.read(rdfsFile);

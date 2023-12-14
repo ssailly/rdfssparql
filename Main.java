@@ -49,7 +49,7 @@ public class Main {
 			System.out.println("Output: " + output);
 		}
 		if (!compliance.equals("none")) {
-			Reasoner reasoner = new Reasoner(rdfFile, rdfsFile, compliance, debug);
+			ReasonerRunner reasoner = new ReasonerRunner(rdfFile, rdfsFile, compliance, debug);
 			reasoner.run();
 		} else if (debug) {
 			System.out.println("No reasoning performed");
