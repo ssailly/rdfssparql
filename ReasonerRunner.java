@@ -1,3 +1,4 @@
+import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.jena.rdf.model.InfModel;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -13,6 +14,7 @@ public class ReasonerRunner {
 	private Reasoner reasoner;
 	private Model rdf = ModelFactory.createDefaultModel();
 	private Model rdfs = ModelFactory.createDefaultModel();
+	private boolean newfacts;
 	private boolean debug;
 
 	/**
@@ -20,16 +22,18 @@ public class ReasonerRunner {
 	 * @param rdfFile path to RDF file
 	 * @param rdfsFile path to RDFS file
 	 * @param compliance Compliance level
+	 * @param newfacts Return new facts only
 	 * @param debug Debug mode
 	 */
 	public ReasonerRunner(String rdfFile, String rdfsFile, String compliance,
-	boolean debug) {
+	boolean newfacts, boolean debug) {
 		rdf.read(rdfFile);
 		rdfs.read(rdfsFile);
 		reasoner = ReasonerRegistry.getRDFSReasoner();
 		reasoner.setParameter(ReasonerVocabulary.PROPsetRDFSLevel, compliance);
 		reasoner.setParameter(ReasonerVocabulary.PROPtraceOn, debug);
 		reasoner.setParameter(ReasonerVocabulary.PROPderivationLogging, debug);
+		this.newfacts = newfacts;
 		this.debug = debug;
 
 		if (debug) {
@@ -43,13 +47,26 @@ public class ReasonerRunner {
 	/**
 	 * Run the reasoner
 	 */
-	public void run() {
+	public String run() {
 		InfModel infered = new InfModelImpl(
 			reasoner.bindSchema(rdfs).bind(rdf.getGraph())
 		);
 		if (debug) {
 			System.out.println("Reasoner run");
 		}
-		infered.write(System.out, "TURTLE");
+		if (newfacts) {
+			infered.remove(rdf);
+		}
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		infered.write(out);
+		rdf.close();
+		rdfs.close();
+		infered.close();
+		try {
+			return out.toString("UTF-8");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "";
+		}
 	}
 }
