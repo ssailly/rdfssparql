@@ -1,5 +1,4 @@
 import org.apache.commons.io.output.ByteArrayOutputStream;
-import org.apache.jena.rdf.model.InfModel;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.impl.InfModelImpl;
@@ -48,14 +47,17 @@ public class ReasonerRunner {
 	 * Run the reasoner
 	 */
 	public String run() {
-		InfModel infered = new InfModelImpl(
+		Model infered = new InfModelImpl(
 			reasoner.bindSchema(rdfs).bind(rdf.getGraph())
 		);
 		if (debug) {
 			System.out.println("Reasoner run");
 		}
 		if (newfacts) {
-			infered.remove(rdf);
+			if (debug) {
+				System.out.println("Keeping new facts only");
+			}
+			infered = infered.difference(rdf).difference(rdfs);
 		}
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		infered.write(out);
