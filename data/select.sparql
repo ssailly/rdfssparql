@@ -1,0 +1,5 @@
+PREFIX : <http://www.asws.com/rois#>
+
+SELECT ?x WHERE {
+	?x a :Personne .
+}

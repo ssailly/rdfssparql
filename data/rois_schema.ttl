@@ -1,0 +1,75 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix : <http://www.asws.com/rois#> .
+
+:Femme
+    a rdfs:Class ;
+    rdfs:subClassOf :Personne .
+
+:Homme
+    a rdfs:Class ;
+    rdfs:subClassOf :Personne .
+
+:Personne
+    a rdfs:Class .
+
+:Prince
+    a rdfs:Class ;
+    rdfs:subClassOf :Homme .
+
+:Princesse
+    a rdfs:Class ;
+    rdfs:subClassOf :Femme .
+
+:Reine
+    a rdfs:Class ;
+    rdfs:subClassOf :Femme .
+
+:Roi
+    a rdfs:Class ;
+    rdfs:subClassOf :Homme .
+
+:conjoint
+    a rdf:Property ;
+    rdfs:domain :Personne ;
+    rdfs:range :Personne .
+
+:descendant
+    a rdf:Property ;
+    rdfs:domain :Personne ;
+    rdfs:range :Personne .
+
+:enfant
+    a rdf:Property ;
+    rdfs:domain :Personne ;
+    rdfs:range :Personne .
+
+:epouse
+    a rdf:Property ;
+    rdfs:domain :Personne ;
+    rdfs:range :Femme ;
+    rdfs:subPropertyOf :conjoint .
+
+:epoux
+    a rdf:Property ;
+    rdfs:domain :Personne ;
+    rdfs:range :Homme ;
+    rdfs:subPropertyOf :conjoint .
+
+:fille
+    a rdf:Property ;
+    rdfs:domain :Personne ;
+    rdfs:range :Femme ;
+    rdfs:subPropertyOf :enfant .
+
+:fils
+    a rdf:Property ;
+    rdfs:domain :Personne ;
+    rdfs:range :Homme ;
+    rdfs:subPropertyOf :enfant .
+
+:nom
+    a rdf:Property ;
+    rdfs:domain :Personne ;
+    rdfs:range rdfs:Literal .
+

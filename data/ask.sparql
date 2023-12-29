@@ -1,0 +1,6 @@
+PREFIX : <http://www.asws.com/rois#>
+
+ASK {
+	?x a :Personne .
+	?x :nom "Christine de France" .
+}

@@ -1,0 +1,8 @@
+PREFIX : <http://www.asws.com/rois#>
+
+CONSTRUCT {
+	?x :estUn :Valois .
+}
+WHERE {
+	?x :dynastie :Dynastie_des_Valois
+}

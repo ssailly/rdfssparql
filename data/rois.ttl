@@ -1,0 +1,49 @@
+# dbpedia/roisall2.ttl
+
+@prefix :      <http://www.asws.com/rois#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+:Marie-Antoinette_d_Autriche
+        a           :Femme , :Reine ;
+        :dynastie   :Maison_de_Habsbourg-Lorraine ;
+        :enfant     :Louis_XVII ;
+        :epoux      :Louis_XVI_de_France ;
+        :nom        "Marie-Antoinette d Autriche" .
+
+:Philippe_Ier_roi_des_Francs
+        a           :Homme , :Roi ;
+        :dynastie   :Capétiens ;
+        :epouse     :Bertrade_de_Montfort ;
+        :fils       :Louis_VI_de_France ;
+        :mere       :Anne_de_Kiev ;
+        :nom        "Philippe Ier roi des Francs" ;
+        :pere       :Henri_Ier_roi_des_Francs .
+
+:Louis_XII  a       :Homme , :Roi ;
+        :dynastie   :Dynastie_des_Valois ;
+        :enfant     :Renée_de_France ;
+        :epouse     :Anne_de_Bretagne ;
+        :fille      :Claude_de_France_1499-1524 ;
+        :nom        "Louis XII" ;
+        :parent     :Marie_de_Clèves_1426-1487 .
+
+:Charles_IX_roi_de_France
+        a           :Homme , :Roi ;
+        :dynastie   :Dynastie_des_Valois ;
+        :enfant     :Charles_d_Angoulême_1573-1650 , :Marie-Élisabeth_de_France ;
+        :epouse     :Elisabeth_d_Autriche_1554-1592 ;
+        :nom        "Charles IX roi de France" .
+
+:François_Ier_roi_de_France
+        a           :Homme , :Roi ;
+        :dynastie   :Dynastie_des_Valois ;
+        :enfant     :Louise_de_France_1515-1518 ;
+        :epouse     :Éléonore_de_Habsbourg ;
+        :fils       :Henri_II_de_France ;
+        :nom        "François Ier roi de France" .
+
+:Christine_de_France  a  :Personne ;
+        :mere   :Marie_de_Médicis ;
+        :nom    "Christine de France" .
